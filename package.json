@@ -1,0 +1,25 @@
+{
+  "name": "@seank/agent-skills",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public Agent Skills collection foundation; no skills released yet",
+  "license": "MIT",
+  "type": "module",
+  "keywords": ["pi-package", "agent-skills"],
+  "repository": {"type": "git", "url": "https://github.com/seank-com/agent-skills.git"},
+  "files": ["skills", "README.md", "LICENSE", "docs"],
+  "pi": {"skills": ["./skills"]},
+  "scripts": {
+    "check": "tsc --noEmit && node scripts/validate.ts",
+    "test": "node --test tests/collection.test.ts tests/discovery.test.ts",
+    "build": "node scripts/validate.ts",
+    "test:package": "npm run build && node --test tests/package.test.ts"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "0.87.1",
+    "@types/node": "24.3.1",
+    "typescript": "5.9.2",
+    "yaml": "2.9.1"
+  },
+  "engines": {"node": ">=24.14.1"}
+}
