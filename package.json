@@ -11,9 +11,11 @@
   "pi": {"skills": ["./skills"]},
   "scripts": {
     "check": "tsc --noEmit && node scripts/validate.ts",
-    "test": "node --test tests/collection.test.ts tests/discovery.test.ts",
+    "test": "node --test tests/collection.test.ts tests/discovery.test.ts tests/private-terms.test.ts",
     "build": "node scripts/validate.ts",
-    "test:package": "npm run build && node --test tests/package.test.ts"
+    "test:package": "npm run build && node --test tests/package.test.ts",
+    "check:private": "node scripts/check-private-terms.ts",
+    "hooks:install": "git config core.hooksPath .githooks"
   },
   "devDependencies": {
     "@earendil-works/pi-coding-agent": "0.87.1",

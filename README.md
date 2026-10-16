@@ -50,5 +50,13 @@ skills are discovered, and separately packs synthetic selection fixtures to test
 real Pi filtering, lazy metadata and skill-relative reference/script/asset paths.
 Fixtures, engineering scripts, dependencies and checkout state do not ship.
 
+To keep private terms and secrets out of commits, run `npm run hooks:install`
+once per clone. Commits and pushes are then refused when an added line or a
+commit message contains a line of `~/.pii` (one term per line, matched
+case-insensitively; `#` lines are comments) or a value of 8 or more characters
+from `~/.env`. `PRIVATE_TERMS_FILE` and `PRIVATE_SECRETS_FILE` select other
+files. `npm run check:private -- --all` checks every staged file, including
+unchanged ones.
+
 Public README/MIT history is preserved. A real skill release requires reviewed
 content, catalog updates, content/package validation and publication authorization.
