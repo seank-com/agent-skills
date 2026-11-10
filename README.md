@@ -60,5 +60,9 @@ unchanged. `PRIVATE_TERMS_FILE` and `PRIVATE_SECRETS_FILE` select other
 files. `npm run check:private -- --all` checks every staged file, including
 unchanged ones.
 
+Existing-branch pre-push scans exclude history already in the local `origin/main`
+tracking ref. Feature commit messages and added lines outside that baseline remain
+checked. New-branch scans still exclude all known remote history.
+
 Public README/MIT history is preserved. A real skill release requires reviewed
 content, catalog updates, content/package validation and publication authorization.
