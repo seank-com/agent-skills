@@ -36,3 +36,19 @@ The private:true manifest guard remains while no public skill exists. Remove it
 only in a separately authorized real release with reviewed contents. Default
 unit/packed fixtures stay outside skills/ and are never catalog entries or shipped
 resources. npm pack is a local validation action, not publication.
+
+## Restrictions register
+
+Review in every PR against package selection, fixtures and dependencies. Entries
+record current constraints, not approval; report other encountered restrictions
+and missing evidence rather than assuming this inventory is exhaustive.
+
+| Restriction | Why (what failure does it prevent) |
+| --- | --- |
+| No placeholder/public skills; manifest remains `private:true` until a separately authorized real release. Location: package manifest, package tests and conventions above. Configuration owner: maintainer. | Prevents publishing an empty or private-content collection as a real release. This is the explicit current collection/release contract; source review does not authorize registry publication or live activation. |
+| Skill names 1-64 characters and description at most 1,024 characters. Source: linked Agent Skills specification; collection frontmatter validation. | External format requirements, not locally invented performance targets. The specification owns those requirements; keep protocol constraints distinct from our numeric choices. |
+| Installed selection uses designated/discovered resources, defaults keep new skills disabled, and private skill/state content is not copied into the public collection. Location: `docs/selection.md`, package manifest/tests. Configuration owner: maintainer. | Preserves deliberate resource selection and the public/private content boundary. It does not create a second filesystem security principal inside the OS account. |
+| Package fixture outer 60,000 ms, pack/install/consumer 15,000 ms and synthetic skill script 5,000 ms. Location: `tests/package.test.ts`, `tests/packed-probe.ts`; test maintainers own values. | Can fail slow functional qualification independently of correctness. Explicit numeric necessity/approval is not established; fixture placement and passing tests do not supply it. |
+| Publication content matching uses the README registry rules. Location: `scripts/check-private-terms.ts`; registry paths are configurable with `PRIVATE_TERMS_FILE`/`PRIVATE_SECRETS_FILE`. | Rejects matching private terms and credential values; matching-policy evidence is distinct from revision selection and capture bounds. |
+| Existing-branch publication scans exclude `origin/main` ancestry; new branches exclude known remote history. Location: `.githooks/pre-push`. | Main exclusion approved in PR #4's guard correction; feature checks remain. |
+| Publication scanner Git-output capture is 256 MiB. Location: `scripts/check-private-terms.ts`; fixed by scanner maintainers. | Can reject large captured Git output. Its necessity/approval is not established by the registry rules or revision-range correction. |
